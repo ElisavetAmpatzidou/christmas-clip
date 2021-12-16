@@ -29,9 +29,9 @@ export const clip = new HTMLClip({
     </g>
   </svg>
   
-  <div class="slide1"><div class="text t1">Χρόνια</div><div class="text t2">Πολλά!</div></div>
-  <div class="slide2"><div class="text t1">${saparateLetters("Καλά")}</div><div class="text t2">${saparateLetters("Χριστούγεννα!")}</div></div>
-  <div class="slide3"><div class="text t1">Ευτυχισμένο</div><div class="text t2">το νέο έτος με</div><div class="text t3">υγεία, αγάπη και</div><div class="text t4">δημιουργηκότητα.</div></div>
+  <div class="slide1"><div class="text t1">{{ initParams.slide1t1 }}</div><div class="text t2">{{ initParams.slide1t2 }}</div></div>
+  <div class="slide2"><div class="text t1">${saparateLetters(initParams.slide2t1)}</div><div class="text t2">${saparateLetters(initParams.slide2t2)}</div></div>
+  <div class="slide3"><div class="text t1">{{initParams.slide3t1}}</div><div class="text t2">{{initParams.slide3t2}}</div><div class="text t3">{{initParams.slide3t3}}</div><div class="text t4">{{initParams.slide3t4}}</div></div>
   
   <svg class="tree" xmlns="http://www.w3.org/2000/svg" version="1.0" width="400px" height="500px" viewBox="0 0 999.000000 1002.000000" preserveAspectRatio="xMidYMid meet">
   <defs>
@@ -96,6 +96,7 @@ export const clip = new HTMLClip({
   }
   .slide1 .text{
     width:0px;
+    text-align:center;
     overflow:hidden;
   }
   .slide1 .t1{
@@ -191,6 +192,16 @@ export const clip = new HTMLClip({
       base64: false,
     },
   ],
+  initParams:{
+    slide1t1:"Merry", /*χρόνια*/
+    slide1t2:"Christmas!", /*Πολλά!*/ 
+    slide2t1:"Happy", /*Καλά*/
+    slide2t2:"New Year!", /*Χριστούγεννα!"*/
+    slide3t1:"Wish you", /*Ευτυχισμένο*/
+    slide3t2:"good health,", /*το νέο έτος με*/
+    slide3t3:"pure love and", /*υγεία, αγάπη και*/
+    slide3t4:"endless creativity." /*δημιουργηκότητα.*/
+  }
 });
 
 const audioPlayback = new AudioPlayback(
@@ -234,7 +245,7 @@ const slide1text = new CSSEffect(
       opacity: 1,
       left:"50%",
       transform:{translateX:"-50%"},
-      width:"45%"
+      width:"100%"
     }
   },
   {
@@ -258,8 +269,6 @@ const zoomSlide1bg = new CSSEffect(
 const zoomSlide1text = new CSSEffect(
   {
     animatedAttrs: {
-      overflow:"visible",
-      width:"80%",
       fontSize:"220px"
     }
   },

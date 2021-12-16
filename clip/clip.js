@@ -29,9 +29,9 @@ export const clip = new HTMLClip({
     </g>
   </svg>
   
-  <div class="slide1"><div class="text t1">{{ initParams.slide1t1 }}</div><div class="text t2">{{ initParams.slide1t2 }}</div></div>
-  <div class="slide2"><div class="text t1">${saparateLetters(initParams.slide2t1)}</div><div class="text t2">${saparateLetters(initParams.slide2t2)}</div></div>
-  <div class="slide3"><div class="text t1">{{initParams.slide3t1}}</div><div class="text t2">{{initParams.slide3t2}}</div><div class="text t3">{{initParams.slide3t3}}</div><div class="text t4">{{initParams.slide3t4}}</div></div>
+  <div class="slide1"><div class="text t1">Merry</div><div class="text t2">Christmas!</div></div>
+  <div class="slide2"><div class="text t1">${saparateLetters("Happy")}</div><div class="text t2">${saparateLetters("New Year!")}</div></div>
+  <div class="slide3"><div class="text t1">Wish you</div><div class="text t2">good health,</div><div class="text t3">pure love and</div><div class="text t4">endless creativity.</div></div>
   
   <svg class="tree" xmlns="http://www.w3.org/2000/svg" version="1.0" width="400px" height="500px" viewBox="0 0 999.000000 1002.000000" preserveAspectRatio="xMidYMid meet">
   <defs>
@@ -130,7 +130,7 @@ export const clip = new HTMLClip({
      text-align:center;
    }
    .slide2 .t1{
-     top:5%;
+     top:0%;
    }
    .slide2 .t2{
      top:26%;
@@ -192,16 +192,6 @@ export const clip = new HTMLClip({
       base64: false,
     },
   ],
-  initParams:{
-    slide1t1:"Merry", /*χρόνια*/
-    slide1t2:"Christmas!", /*Πολλά!*/ 
-    slide2t1:"Happy", /*Καλά*/
-    slide2t2:"New Year!", /*Χριστούγεννα!"*/
-    slide3t1:"Wish you", /*Ευτυχισμένο*/
-    slide3t2:"good health,", /*το νέο έτος με*/
-    slide3t3:"pure love and", /*υγεία, αγάπη και*/
-    slide3t4:"endless creativity." /*δημιουργηκότητα.*/
-  }
 });
 
 const audioPlayback = new AudioPlayback(

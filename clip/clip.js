@@ -1,4 +1,9 @@
-import {AudioPlayback,HTMLClip,CSSEffect,loadPlugin} from "@donkeyclip/motorcortex";
+import {
+  AudioPlayback,
+  HTMLClip,
+  CSSEffect,
+  loadPlugin,
+} from "@donkeyclip/motorcortex";
 import SVGPluginDefinition from "@donkeyclip/motorcortex-svgdraw";
 const SVGPlugin = loadPlugin(SVGPluginDefinition);
 
@@ -23,11 +28,11 @@ export const clip = new HTMLClip({
   
   <div class="slide1"><div class="text t1">{{ initParams.slide1t1 }}</div><div class="text t2">{{ initParams.slide1t2 }}</div></div>
   <div id="root" class="slide2">
-  <div class="looper" mc-for="key,letter" mc-of="initParams.slide2text">
-      <span class="text {{ 't' + key }}">
-        <div class="letter">{{letter.ta}}</div><div class="letter">{{letter.tb}}</div><div class="letter">{{letter.tc}}</div><div class="letter">{{letter.td}}</div><div class="letter">{{letter.te}}</div><div class="letter" mc-if="letter.tf">{{letter.tf}}</div><div class="letter" mc-if="letter.tg">{{letter.tg}}</div><div class="letter" mc-if="letter.th">{{letter.th}}</div><div class="letter" mc-if="letter.ti">{{letter.ti}}</div><div class="letter" mc-if="letter.tj">{{letter.tj}}</div><div class="letter" mc-if="letter.tk">{{letter.tk}}</div><div class="letter" mc-if="letter.tl">{{letter.tl}}</div><div class="letter" mc-if="letter.tm">{{letter.tm}}</div>
-     </span>
-  </div>
+    <div class="looper" mc-for="key,word" mc-of="initParams.slide2text">
+      <div class="text {{ 't' + key }}">
+        <div mc-for="key,letter" mc-of="word" class="letter">{{letter}}</div>
+      </div>
+    </div>
   </div>
   <div class="slide3"><div class="text t1">{{initParams.slide3t1}}</div><div class="text t2">{{initParams.slide3t2}}</div><div class="text t3">{{initParams.slide3t3}}</div><div class="text t4">{{initParams.slide3t4}}</div></div>
   
@@ -191,83 +196,27 @@ export const clip = new HTMLClip({
       base64: false,
     },
   ],
-  initParams: 
-   //initParams for English
-  {
-    slide1t1:"Merry",
-    slide1t2:"Christmas!",
-    slide2text: [
-      {
-        ta:'H',
-        tb:'a',
-        tc:'p',
-        td:'p',
-        te:'y',
-        tf:false,
-        tg:false,
-        th:false,
-        ti:false,
-        tj:false,
-        tk:false,
-        tl:false,
-        tm:false,
-        },
-        {
-        ta:'N',
-        tb:'e',
-        tc:'w',
-        td:'  ',
-        te:'Y',
-        tf:'e',
-        tg:'a',
-        th:'r',
-        ti:'!',
-        tj:false,
-        tk:false,
-        tl:false,
-        tm:false,
-        }
-    ],
-    slide3t1:"Wish you",
-    slide3t2:"good health,",
-    slide3t3:"pure love and",
-    slide3t4:"endless creativity.",
-  }
-//initParams for Greek
+  initParams:
+    //initParams for English
+    {
+      slide1t1: "Merry",
+      slide1t2: "Christmas!",
+      slide2text: [
+        ["H", "a", "p", "p", "y"],
+        ["N", "e", "w", "  ", "Y", "e", "a", "r", "!"],
+      ],
+      slide3t1: "Wish you",
+      slide3t2: "good health,",
+      slide3t3: "pure love and",
+      slide3t4: "endless creativity.",
+    },
+  //initParams for Greek
   //  {
   //   slide1t1:"Χρόνια",
   //   slide1t2:"Πολλά!",
   //   slide2text: [
-  //     {
-  //       ta:'Χ',
-  //       tb:'α',
-  //       tc:'ρ',
-  //       td:'ο',
-  //       te:'ύ',
-  //       tf:'μ',
-  //       tg:'ε',
-  //       th:'ν',
-  //       ti:'α',
-  //       tj:false,
-  //       tk:false,
-  //       tl:false,
-  //       tm:false,
-  //       },
-  //       {
-  //       ta:'Χ',
-  //       tb:'ρ',
-  //       tc:'ι',
-  //       td:'σ',
-  //       te:'τ',
-  //       tf:'ο',
-  //       tg:'ύ',
-  //       th:'γ',
-  //       ti:'ε',
-  //       tj:'ν',
-  //       tk:'ν',
-  //       tl:'α',
-  //       tm:'!',
-  //       }
+  //    ["Χ", "α", "ρ", "ο", "ύ", "μ", "ε", "ν", "α"],
+  //    ["Χ", "ρ", "ι", "σ", "τ", "ο", "ύ", "γ", "ε", "ν", "ν", "α", "!"],
   //   ],
   //   slide3t1:"Ευτυχισμένο",
   //   slide3t2:"το νέο έτος με",
@@ -291,96 +240,96 @@ const sleighMove = new CSSEffect(
   {
     animatedAttrs: {
       top: "10px",
-      left: "800px"
-    }
+      left: "800px",
+    },
   },
   {
     duration: 3000,
     selector: ".sleigh",
-    easing:"easeInOutCubic"
+    easing: "easeInOutCubic",
   }
 );
 const slide1appear = new CSSEffect(
   {
     animatedAttrs: {
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   {
     duration: 2000,
-    selector: ".slide1"
+    selector: ".slide1",
   }
 );
 const slide1text = new CSSEffect(
   {
     animatedAttrs: {
       opacity: 1,
-      left:"50%",
-      transform:{translateX:"-50%"},
-      width:"100%"
-    }
+      left: "50%",
+      transform: { translateX: "-50%" },
+      width: "100%",
+    },
   },
   {
     duration: 2300,
     selector: ".slide1 .t1,.slide1 .t2",
-    easing:"easeOutCirc"
+    easing: "easeOutCirc",
   }
 );
 const zoomSlide1bg = new CSSEffect(
   {
     animatedAttrs: {
-      backgroundSize: "2000px"
-    }
+      backgroundSize: "2000px",
+    },
   },
   {
     duration: 1500,
     selector: ".slide1",
-    easing:"easeInQuint"
+    easing: "easeInQuint",
   }
 );
 const zoomSlide1text = new CSSEffect(
   {
     animatedAttrs: {
-      fontSize:"220px"
-    }
+      fontSize: "220px",
+    },
   },
   {
     duration: 1500,
     selector: ".slide1 .text",
-    easing:"easeInQuint"
+    easing: "easeInQuint",
   }
 );
 const slide1text1 = new CSSEffect(
   {
     animatedAttrs: {
-      top:"-5%",
-      opacity:0
-    }
+      top: "-5%",
+      opacity: 0,
+    },
   },
   {
     duration: 1500,
     selector: ".slide1 .t1",
-    easing:"easeInQuint"
+    easing: "easeInQuint",
   }
 );
 const slide1text2 = new CSSEffect(
   {
     animatedAttrs: {
-      top:"43%",
-      opacity:0
-    }
+      top: "43%",
+      opacity: 0,
+    },
   },
   {
     duration: 1500,
     selector: ".slide1 .t2",
-    easing:"easeInQuint"
+    easing: "easeInQuint",
   }
 );
 const removeSlide1 = new CSSEffect(
   {
     animatedAttrs: {
-      opacity:0
-    }
+      opacity: 0,
+    },
   },
   {
     duration: 1,
@@ -390,8 +339,8 @@ const removeSlide1 = new CSSEffect(
 const slide2appear = new CSSEffect(
   {
     animatedAttrs: {
-      opacity:1
-    }
+      opacity: 1,
+    },
   },
   {
     duration: 1,
@@ -402,152 +351,152 @@ const slide2bg = new CSSEffect(
   {
     animatedAttrs: {
       backgroundSize: "1200px 900px",
-      backgroundPosition: "bottom"
-    }
+      backgroundPosition: "bottom",
+    },
   },
   {
     duration: 1000,
     selector: ".slide2",
-    easing:"easeOutQuint"
+    easing: "easeOutQuint",
   }
 );
 const slide2text = new CSSEffect(
   {
     animatedAttrs: {
-     opacity:1,
-     top:"15%"
-    }
+      opacity: 1,
+      top: "15%",
+    },
   },
   {
     duration: 300,
-    delay:"@stagger(0,2000)",
-    selector: ".slide2 .letter"
+    delay: "@stagger(0,2000)",
+    selector: ".slide2 .letter",
   }
 );
 const slide2unfocus = new CSSEffect(
   {
     animatedAttrs: {
-      backgroundSize: "800px 600px"
-    }
+      backgroundSize: "800px 600px",
+    },
   },
   {
     duration: 1000,
-    selector: ".slide2"
+    selector: ".slide2",
   }
 );
 const slide2textSize = new CSSEffect(
   {
     animatedAttrs: {
-      fontSize:"60px"
-    }
+      fontSize: "60px",
+    },
   },
   {
     duration: 1000,
-    selector: ".slide2 .text"
+    selector: ".slide2 .text",
   }
 );
 const slide2text1 = new CSSEffect(
   {
     animatedAttrs: {
-      top:"36%"
-    }
+      top: "36%",
+    },
   },
   {
     duration: 1000,
-    selector: ".slide2 .t0"
+    selector: ".slide2 .t0",
   }
 );
 const slide2text2 = new CSSEffect(
   {
     animatedAttrs: {
-      top:"52%"
-    }
+      top: "52%",
+    },
   },
   {
     duration: 1000,
-    selector: ".slide2 .t1"
+    selector: ".slide2 .t1",
   }
 );
 const removeSlide2 = new CSSEffect(
   {
     animatedAttrs: {
-      opacity:0
-    }
+      opacity: 0,
+    },
   },
   {
     duration: 1000,
-    selector: ".slide2"
+    selector: ".slide2",
   }
 );
 const slide3appear = new CSSEffect(
   {
     animatedAttrs: {
-     left:"0px",
-     opacity:1
-    }
+      left: "0px",
+      opacity: 1,
+    },
   },
   {
     duration: 1000,
-    selector: ".slide3"
+    selector: ".slide3",
   }
 );
 const slide3text = new CSSEffect(
   {
     animatedAttrs: {
-     left:"25px",
-     opacity:1
-    }
+      left: "25px",
+      opacity: 1,
+    },
   },
   {
     duration: 700,
-    delay:"@stagger(0,700)",
+    delay: "@stagger(0,700)",
     selector: ".slide3 .text",
-    easing:"easeOutQuint"
+    easing: "easeOutQuint",
   }
 );
 
 const removeSlide3 = new CSSEffect(
   {
     animatedAttrs: {
-     opacity:0
-    }
+      opacity: 0,
+    },
   },
   {
     duration: 1000,
-    selector: ".slide3"
+    selector: ".slide3",
   }
 );
 const drawTree = new SVGPlugin.Draw(
   {
     animatedAttrs: {
-      cover: 1
-    }
+      cover: 1,
+    },
   },
   {
     selector: ".tree path",
-    duration: 1000
+    duration: 1000,
   }
 );
 const star = new CSSEffect(
   {
     animatedAttrs: {
-     strokeWidth:"200px"
-    }
+      strokeWidth: "200px",
+    },
   },
   {
     selector: ".tree .star",
-    duration: 200
+    duration: 200,
   }
 );
 const star2 = new CSSEffect(
   {
     animatedAttrs: {
-     strokeWidth:"50px"
-    }
+      strokeWidth: "50px",
+    },
   },
   {
     selector: ".tree .star",
-    duration: 1
+    duration: 1,
   }
 );
 clip.addIncident(sleighMove, 0);

@@ -2,14 +2,6 @@ import {AudioPlayback,HTMLClip,CSSEffect,loadPlugin} from "@donkeyclip/motorcort
 import SVGPluginDefinition from "@donkeyclip/motorcortex-svgdraw";
 const SVGPlugin = loadPlugin(SVGPluginDefinition);
 
-function saparateLetters(word){
-  let letterDivs="";
-  for(let i=0;i<word.length;i++){
-    letterDivs +=`<div class="letter"> ${word[i]}</div>`
-  }
-  return letterDivs; 
-}
-
 export const clip = new HTMLClip({
   html: `
   <div class="container">
@@ -29,9 +21,15 @@ export const clip = new HTMLClip({
     </g>
   </svg>
   
-  <div class="slide1"><div class="text t1">Merry</div><div class="text t2">Christmas!</div></div>
-  <div class="slide2"><div class="text t1">${saparateLetters("Happy")}</div><div class="text t2">${saparateLetters("New Year!")}</div></div>
-  <div class="slide3"><div class="text t1">Wish you</div><div class="text t2">good health,</div><div class="text t3">pure love and</div><div class="text t4">endless creativity.</div></div>
+  <div class="slide1"><div class="text t1">{{ initParams.slide1t1 }}</div><div class="text t2">{{ initParams.slide1t2 }}</div></div>
+  <div id="root" class="slide2">
+  <div class="looper" mc-for="key,letter" mc-of="initParams.slide2text">
+      <span class="text {{ 't' + key }}">
+        <div class="letter">{{letter.ta}}</div><div class="letter">{{letter.tb}}</div><div class="letter">{{letter.tc}}</div><div class="letter">{{letter.td}}</div><div class="letter">{{letter.te}}</div><div class="letter" mc-if="letter.tf">{{letter.tf}}</div><div class="letter" mc-if="letter.tg">{{letter.tg}}</div><div class="letter" mc-if="letter.th">{{letter.th}}</div><div class="letter" mc-if="letter.ti">{{letter.ti}}</div><div class="letter" mc-if="letter.tj">{{letter.tj}}</div><div class="letter" mc-if="letter.tk">{{letter.tk}}</div><div class="letter" mc-if="letter.tl">{{letter.tl}}</div><div class="letter" mc-if="letter.tm">{{letter.tm}}</div>
+     </span>
+  </div>
+  </div>
+  <div class="slide3"><div class="text t1">{{initParams.slide3t1}}</div><div class="text t2">{{initParams.slide3t2}}</div><div class="text t3">{{initParams.slide3t3}}</div><div class="text t4">{{initParams.slide3t4}}</div></div>
   
   <svg class="tree" xmlns="http://www.w3.org/2000/svg" version="1.0" width="400px" height="500px" viewBox="0 0 999.000000 1002.000000" preserveAspectRatio="xMidYMid meet">
   <defs>
@@ -120,6 +118,7 @@ export const clip = new HTMLClip({
   }
   .letter{
     display:inline-block;
+    margin:0px;
     opacity:0;
    }
    .slide2 .text{
@@ -129,10 +128,10 @@ export const clip = new HTMLClip({
      width:100%;
      text-align:center;
    }
-   .slide2 .t1{
+   .slide2 .t0{
      top:0%;
    }
-   .slide2 .t2{
+   .slide2 .t1{
      top:26%;
    }
    .slide3{
@@ -192,6 +191,89 @@ export const clip = new HTMLClip({
       base64: false,
     },
   ],
+  initParams: 
+   //initParams for English
+  {
+    slide1t1:"Merry",
+    slide1t2:"Christmas!",
+    slide2text: [
+      {
+        ta:'H',
+        tb:'a',
+        tc:'p',
+        td:'p',
+        te:'y',
+        tf:false,
+        tg:false,
+        th:false,
+        ti:false,
+        tj:false,
+        tk:false,
+        tl:false,
+        tm:false,
+        },
+        {
+        ta:'N',
+        tb:'e',
+        tc:'w',
+        td:'  ',
+        te:'Y',
+        tf:'e',
+        tg:'a',
+        th:'r',
+        ti:'!',
+        tj:false,
+        tk:false,
+        tl:false,
+        tm:false,
+        }
+    ],
+    slide3t1:"Wish you",
+    slide3t2:"good health,",
+    slide3t3:"pure love and",
+    slide3t4:"endless creativity.",
+  }
+//initParams for Greek
+  //  {
+  //   slide1t1:"Χρόνια",
+  //   slide1t2:"Πολλά!",
+  //   slide2text: [
+  //     {
+  //       ta:'Χ',
+  //       tb:'α',
+  //       tc:'ρ',
+  //       td:'ο',
+  //       te:'ύ',
+  //       tf:'μ',
+  //       tg:'ε',
+  //       th:'ν',
+  //       ti:'α',
+  //       tj:false,
+  //       tk:false,
+  //       tl:false,
+  //       tm:false,
+  //       },
+  //       {
+  //       ta:'Χ',
+  //       tb:'ρ',
+  //       tc:'ι',
+  //       td:'σ',
+  //       te:'τ',
+  //       tf:'ο',
+  //       tg:'ύ',
+  //       th:'γ',
+  //       ti:'ε',
+  //       tj:'ν',
+  //       tk:'ν',
+  //       tl:'α',
+  //       tm:'!',
+  //       }
+  //   ],
+  //   slide3t1:"Ευτυχισμένο",
+  //   slide3t2:"το νέο έτος με",
+  //   slide3t3:"υγεία, αγάπη και",
+  //   slide3t4:"δημιουργηκότητα.",
+  // }
 });
 
 const audioPlayback = new AudioPlayback(
@@ -372,7 +454,7 @@ const slide2text1 = new CSSEffect(
   },
   {
     duration: 1000,
-    selector: ".slide2 .t1"
+    selector: ".slide2 .t0"
   }
 );
 const slide2text2 = new CSSEffect(
@@ -383,7 +465,7 @@ const slide2text2 = new CSSEffect(
   },
   {
     duration: 1000,
-    selector: ".slide2 .t2"
+    selector: ".slide2 .t1"
   }
 );
 const removeSlide2 = new CSSEffect(

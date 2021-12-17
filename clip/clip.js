@@ -67,7 +67,7 @@ export const clip = new HTMLClip({
   .slide1{
     width: 800px;
     height: 600px;
-    background:url("images/chr2.jpeg");
+    background:url("https://github.com/ElisavetAmpatzidou/christmas-clip/blob/main/demo/images/chr2.jpeg?raw=true");
     background-size: 900px;
     background-position: center;
     position:absolute;
@@ -108,7 +108,7 @@ export const clip = new HTMLClip({
   .slide2{
     width: 800px;
     height: 600px;
-    background:url("images/chr1Duble.png");
+    background:url("https://github.com/ElisavetAmpatzidou/christmas-clip/blob/main/demo/images/chr1Duble.png?raw=true");
     background-size: 1600px 1400px;
     background-position:center;
     position:absolute;
@@ -137,7 +137,7 @@ export const clip = new HTMLClip({
    .slide3{
     width: 800px;
     height: 600px;
-    background:url("images/chr3.jpeg");
+    background:url("https://github.com/ElisavetAmpatzidou/christmas-clip/blob/main/demo/images/chr3.jpeg?raw=true");
     background-size:900px ;
     background-position: center;
     position:absolute;
